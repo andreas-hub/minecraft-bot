@@ -1,34 +1,35 @@
 {
-  "name": "minecraft-bot",
-  "version": "1.0.0",
-  "description": "A discord bot for my minecraft server",
-  "homepage": "https://github.com/andreas-hub/minecraft-bot#readme",
-  "bugs": {
-    "url": "https://github.com/andreas-hub/minecraft-bot/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/andreas-hub/minecraft-bot.git"
-  },
-  "license": "MIT",
-  "author": "",
-  "type": "module",
-  "main": "index.js",
-  "scripts": {
-    "run": "node ./index.js",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier . --write",
-    "format:check": "prettier . --check"
-  },
-  "dependencies": {
-    "discord.js": "^14.25.1",
-    "dotenv": "^17.3.1",
-    "eslint-config-prettier": "^10.1.8",
-    "prettier": "^3.8.1"
-  },
-  "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "eslint": "^10.0.0"
-  }
+    "name": "minecraft-bot",
+    "version": "1.0.0",
+    "description": "A discord bot for my minecraft server",
+    "homepage": "https://github.com/andreas-hub/minecraft-bot#readme",
+    "bugs": {
+        "url": "https://github.com/andreas-hub/minecraft-bot/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/andreas-hub/minecraft-bot.git"
+    },
+    "license": "MIT",
+    "author": "",
+    "type": "module",
+    "main": "index.js",
+    "scripts": {
+        "run": "node ./index.js",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "format": "prettier . --write",
+        "format:check": "prettier . --check"
+    },
+    "dependencies": {
+        "discord.js": "^14.25.1",
+        "dotenv": "^17.3.1",
+        "eslint-config-prettier": "^10.1.8",
+        "globals": "^17.3.0",
+        "prettier": "^3.8.1"
+    },
+    "devDependencies": {
+        "@eslint/js": "^10.0.1",
+        "eslint": "^10.0.0"
+    }
 }

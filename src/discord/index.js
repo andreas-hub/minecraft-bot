@@ -1,37 +1,30 @@
 import { Client, Events, GatewayIntentBits } from 'discord.js';
 import clientCommands from './commands/index.js';
 import deployCommands from './deploy-commands.js';
+import guildMemberAdd from './events/guildMemberAdd.js';
+import interactionCreate from './events/interactionCreate.js';
 
-export const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+export const client = new Client({
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.GuildModeration,
+        GatewayIntentBits.GuildInvites,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.GuildMessageReactions,
+        GatewayIntentBits.MessageContent,
+    ],
+});
 
 client.commands = clientCommands;
 
 client.on(Events.ClientReady, (readyClient) => {
-  console.log(`Logged in as ${readyClient.user.tag}!`);
-  deployCommands();
+    console.log(`Logged in as ${readyClient.user.tag}!`);
+    deployCommands();
 });
 
-client.on(Events.InteractionCreate, async (interaction) => {
-  if (interaction.isChatInputCommand()) {
-      const command = interaction.client.commands.get(interaction.commandName);
+client.on(Events.InteractionCreate, interactionCreate);
 
-      if (!command) {
-          console.error(`No command matching ${interaction.commandName} was found.`);
-          return;
-      }
+client.on(Events.GuildMemberAdd, guildMemberAdd);
 
-      try {
-          await command.execute(interaction);
-      } catch (error) {
-          console.error(error);
-          if (interaction.replied || interaction.deferred) {
-              await interaction.followUp({ content: 'There was an error while executing this command!', flags: MessageFlags.Ephemeral });
-          } else {
-              await interaction.reply({ content: 'There was an error while executing this command!', flags: MessageFlags.Ephemeral });
-          }
-      }
-  }
-
-});
-
-client.on(Events.MessageCreate, console.log);
+//client.on(Events.MessageCreate, messageCreate);
